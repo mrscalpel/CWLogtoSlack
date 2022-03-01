@@ -1,4 +1,4 @@
-Listening for Amazon ECS CloudWatch Events
+#Listening for Amazon ECS CloudWatch Events
 
 Step 1: Create the Lambda function
 
@@ -37,7 +37,7 @@ def lambda_handler(event, context):
 
 *Choose Save.
 
-Register an event rule
+#Register an event rule
 
 To route events to your Lambda function
 
@@ -58,6 +58,8 @@ To route events to your Lambda function
 
 Now use this log group as input to the Lambda Function we are going to create below.
 
+
+```
 import json
 import base64
 import gzip
@@ -71,12 +73,6 @@ def lambda_handler(event,context):
     print(json.dumps(event))
     cw_data = str(event['detail']['stoppedReason'])
     print(cw_data)
-#    cw_logs = gzip.GzipFile(fileobj=BytesIO(base64.b64decode(cw_data, validate=True))).read()
-#    print(cw_logs)
-#    log_events = json.loads(cw_logs)
-#    reason = log_events["requestPayload"]["detail"]["stoppedReason"]
-#    print(reason)
-# webhook
 
     body = {"text": cw_data}
     myurl = "https://hooks.slack.com/services/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"
@@ -89,3 +85,4 @@ def lambda_handler(event,context):
 
     req.add_header('Content-Length', len(jsondataasbytes))
     response = urllib.request.urlopen(req, jsondataasbytes)
+```
