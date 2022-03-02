@@ -14,7 +14,7 @@ In this procedure, you create a simple Lambda function to serve as a target for 
 
     *For Name, enter a value.
 
-    *For Runtime, choose Python 2.7.
+    *For Runtime, choose Python 3.6.
 
     *For Role, choose Create a new role with basic Lambda permissions.
 
